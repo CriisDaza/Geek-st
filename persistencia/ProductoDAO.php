@@ -33,14 +33,14 @@ class ProductoDAO
 
     public function Crear()
     {
-       return "insert into producto (nombre,precio,cantidad,administrador_idadministrador,marca_idmarca,tipoproducto_idtipoproducto)
+       return "insert into producto (nombre, precio, cantidad, administrador_idadministrador, marca_idmarca, tipoproducto_idtipoproducto)
               values (
               '" . $this->nombre . "',
               '" . $this->precio . "',
               '" . $this->cantidad . "',
               '" . $this->administrador_idadministrador . "',
               '" . $this->marca_idmarca . "',
-              '" . $this->tipoproducto_idtipoproducto . "',
+              '" . $this->tipoproducto_idtipoproducto . "'
               )";
     }
     
@@ -51,8 +51,9 @@ class ProductoDAO
     
     public function ConsultarTodos($atributo, $direccion, $filas , $pag){
         return "select idproducto, nombre, precio, cantidad, imagen, administrador_idadministrador, marca_idmarca, tipoproducto_idtipoproducto
-               from producto " . (($atributo != "" && $direccion != "")?" order by ". $atributo . " " . $direccion:"") .
-               "limit" . (($pag-1)*$filas) . ", " . $filas;
+               from producto " . 
+               (($atributo != "" && $direccion != "")?"order by ". $atributo . " " . $direccion:"") .
+               " limit " . (($pag-1)*$filas) . ", " . $filas;
     }
     
     public function ConsultarTotalFilas(){

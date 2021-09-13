@@ -21,7 +21,7 @@ $administrador->consultar();
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 						<li><a class="dropdown-item"
 							href="index.php?pid=<?php echo base64_encode("presentacion/producto/crearProducto.php")?>">Crear</a></li>
-						<li><a class="dropdown-item" href="#">Consultar</a></li>
+						<li><a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/producto/consultar.php")?>">Consultar</a></li>
 						<li><a class="dropdown-item" href="#">Buscar</a></li>
 					</ul></li>
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"

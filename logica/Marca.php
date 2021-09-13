@@ -39,7 +39,7 @@ class Marca
         $this -> conexion -> Abrir();
         $this -> conexion -> ejecutar($this -> marcaDAO -> Consultar());
         $resultado = $this -> conexion -> extraer();
-        $this -> nombre = $resultado;
+        $this -> nombre = $resultado[0];
         $this -> conexion -> cerrar();
     }
     

@@ -1,8 +1,6 @@
 <?php
 class MarcaDAO
 {
-    
-  
         private $idmarca;
         private $nombre;
         
@@ -12,7 +10,7 @@ class MarcaDAO
         }
         
         public function Consultar(){
-          return "select nombre from marca where idmarca =". $this-> id; 
+          return "select nombre from marca where idmarca =". $this-> idmarca; 
         }
         
         public function ConsultarTodos(){

@@ -22,8 +22,8 @@ class TipoProducto
 
     public function TipoProducto($id = "", $nombre = "")
     {
-        $this->idtipoproducto->$id;
-        $this->nombre->$nombre;
+        $this->idtipoproducto =$id;
+        $this->nombre = $nombre;
         $this->conexion = new Conec();
         $this->tipoproductoDAO = new TipoProductoDAO($id, $nombre);
     }
@@ -39,9 +39,10 @@ class TipoProducto
 
     public function ConsultarTodos()
     {
-        $this->conexion->abrir();
-        $this->conexion->ejecutar($this->tipoproductoDAO->ConsultarTodos());
+        $this->conexion->Abrir();
+        $this -> conexion -> ejecutar($this -> tipoproductoDAO -> ConsultarTodos());
         $tiposProducto = array();
+        
         while (($resultado = $this->conexion->extraer()) != null) {
             array_push($tiposProducto, new TipoProducto($resultado[0], $resultado[1]));
         }

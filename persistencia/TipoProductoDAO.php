@@ -14,7 +14,7 @@ class TipoProductoDAO
   
   public function ConsultarTodos(){
       
-      return "select idtipoproducto,nombre from tipoproducto order by nombre desc";
+      return "select idtipoproducto, nombre from tipoproducto order by nombre desc";
   }
 }
 

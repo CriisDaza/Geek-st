@@ -1,4 +1,7 @@
 <?php
+require_once 'persistencia/Conec.php';
+require_once 'persistencia/ProductoDAO.php';
+
 class Producto
 {
         private $id;
@@ -11,6 +14,47 @@ class Producto
         private $tipoproducto;
         private $conexion;
         private $productoDAO;
+        
+        public function getId()
+        {
+            return $this->id;
+        }
+    
+        public function getNombre()
+        {
+            return $this->nombre;
+        }
+    
+        public function getPrecio()
+        {
+            return $this->precio;
+        }
+    
+        public function getCantidad()
+        {
+            return $this->cantidad;
+        }
+    
+        public function getImagen()
+        {
+            return $this->imagen;
+        }
+    
+        public function getAdmin()
+        {
+            return $this->admin;
+        }
+    
+        public function getMarca()
+        {
+            return $this->marca;
+        }
+    
+        public function getTipoproducto()
+        {
+            return $this->tipoproducto;
+        }
+    
         
         public function Producto($id = "", $nombre = "", $precio = "", $cantidad = "", $imagen = "", $administrador = "", $marca = "", $tipoProducto = "")
         {
