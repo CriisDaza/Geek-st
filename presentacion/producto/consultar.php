@@ -42,36 +42,36 @@ $totalFilas = $producto->ConsultarTotalFilas();
 						</div>
 					</div>
 					
-					<table class="table table-striped table-hover">
-					<thead>
-					<tr>
-					<th>#</th>
-					<th>Nombre
+					<table class="table table-bordered ">
+					<thead class="border border-4 border-primary ">
+					<tr >
+					<th class="border border-4 border-primary ">#</th>
+					<th class="border border-4 border-primary ">Nombre
 					<?php 
 								echo ($atributo!="nombre" || $direccion!="asc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&atributo=nombre&direccion=asc&filas=" . $filas . "'><i class='fas fa-sort-amount-up-alt'></i></a> ":"<i class='fas fa-sort-up'></i> ";
 								echo ($atributo!="nombre" || $direccion!="desc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&atributo=nombre&direccion=desc&filas=" . $filas . "'><i class='fas fa-sort-amount-down-alt'></i></a> ":"<i class='fas fa-sort-down'></i> ";
 								?>	
-					<th>Precio
+					<th class="border border-4 border-primary ">Precio
 					<?php 
 								echo ($atributo!="precio" || $direccion!="asc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&atributo=precio&direccion=asc&filas=" . $filas . "'><i class='fas fa-sort-amount-up-alt'></i></a> ":"<i class='fas fa-sort-up'></i> ";
 								echo ($atributo!="precio" || $direccion!="desc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&atributo=precio&direccion=desc&filas=" . $filas . "'><i class='fas fa-sort-amount-down-alt'></i></a> ":"<i class='fas fa-sort-down'></i> ";
 								?>
-					</th>
-								<th>Cantidad</th>
-								<th>Imagen</th>
-								<th>Administrador</th>
-								<th>Marca</th>
-								<th>Tipo</th>
-								<th></th>
+					</th >
+								<th class="border border-4 border-primary " >Cantidad</th>
+								<th class="border border-4 border-primary ">Imagen</th>
+								<th class="border border-4 border-primary ">Administrador</th>
+								<th class="border border-4 border-primary ">Marca</th>
+								<th class="border border-4 border-primary ">Tipo</th>
+								<th class="border border-4 border-primary "></th>
 								</tr>
 								</thead>
-								<tbody>
+								<tbody class="border border-4 border-primary">
 								<?php 
 								$pos=1;
 								foreach ($productos as $productoActual){
 								    echo "<tr>";
 								    echo "<td>" . $pos ++ . "</td>
-                                      <td>" . $productoActual -> getNombre() . "</td>
+                                      <td >" . $productoActual -> getNombre() . "</td>
                                       <td>" . $productoActual -> getPrecio() . "</td>
                                       <td>" . $productoActual -> getCantidad() . "</td>
                                       <td>" . (($productoActual -> getImagen()!="")?"<img src='" . $productoActual -> getImagen() . "' height='40px' />":"") . "</td>
