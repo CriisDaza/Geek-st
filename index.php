@@ -46,7 +46,7 @@ if ($pid != "" && (in_array($pid, $pagSinSesion) || (isset($_SESSION["id"]) && $
 		<div class="row mt-3">
 			<div class="row">
 				<div class="col text-center text-muted">
-					Criis R &copy; <?php echo date("Y") ?>	
+					Criis & Jonatan xd &copy; <?php echo date("Y") ?>	
 				</div>
 			</div>
 		</div>

@@ -59,7 +59,6 @@ $totalFilas = $producto->ConsultarTotalFilas();
 					</th >
 								<th class="border border-4 border-primary " >Cantidad</th>
 								<th class="border border-4 border-primary ">Imagen</th>
-								<th class="border border-4 border-primary ">Administrador</th>
 								<th class="border border-4 border-primary ">Marca</th>
 								<th class="border border-4 border-primary ">Tipo</th>
 								<th class="border border-4 border-primary "></th>
@@ -75,7 +74,6 @@ $totalFilas = $producto->ConsultarTotalFilas();
                                       <td>" . $productoActual -> getPrecio() . "</td>
                                       <td>" . $productoActual -> getCantidad() . "</td>
                                       <td>" . (($productoActual -> getImagen()!="")?"<img src='" . $productoActual -> getImagen() . "' height='40px' />":"") . "</td>
-                                      <td>" . $productoActual -> getAdmin() -> getNombre() . " " . $productoActual -> getAdmin() -> getApellido() . "</td>
                                       <td>" . $productoActual -> getMarca() -> getNombre() . "</td>
                                       <td>" . $productoActual -> getTipoproducto() -> getNombre() . "</td>
                                       <td nowrap> <a href='modalProducto.php?id=" . $productoActual -> getId() . "' data-bs-toggle='modal' data-bs-target='#modalProducto'><i class='fas fa-eye'></i></a> <a href='index.php?pid=" . base64_encode("presentacion/producto/editarImagenProducto.php") . "&id=" . $productoActual -> getId() . "' data-bs-toggle='tooltip' data-bs-placement='top' title='Editar imagen'><i class='far fa-image'></i></a></td>";
@@ -87,16 +85,76 @@ $totalFilas = $producto->ConsultarTotalFilas();
 					<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center"> 
 					<?php 
-							$numPags = intval($totalFilas/$filas);
-							if($totalFilas%$filas != 0){
-							    $numPags++;
-							}							
-							echo ($pag!=1)?"<li class='page-item'><a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&pag=" . ($pag-1) . "&filas=" . $filas . (($atributo!="" && $direccion!="")?("&atributo=".$atributo."&direccion=".$direccion):"") . "'> <span aria-hidden='true'>&laquo;</span></a></li>" : "<li class='page-item disabled'><a class='page-link'>&laquo;</li></a>";
-							for($i=1; $i<=$numPags; $i++){
-							    echo "<li class='page-item " . (($pag==$i)?"active":"") . "'>" . (($pag!=$i)?"<a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&pag=" . $i . "&filas=" . $filas . (($atributo!="" && $direccion!="")?("&atributo=".$atributo."&direccion=".$direccion):"") . "'>" . $i . "</a>":"<a class='page-link'>" . $i . "</a>") . "</li>";
-							}
-							echo ($pag!=$numPags)?"<li class='page-item'><a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&pag=" . ($pag+1) . "&filas=" . $filas . (($atributo!="" && $direccion!="")?("&atributo=".$atributo."&direccion=".$direccion):"") . "'> <span aria-hidden='true'>&raquo;</span></a></li>" : "<li class='page-item disabled'><a class='page-link'>&raquo;</li></a>";
-							?>		
+					$numPags = intval($totalFilas / $filas);
+					if ($totalFilas % $filas != 0) {
+					    $numPags ++;
+					}
+					echo ($pag != 1) ? "<li class='page-item'><a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . ($pag - 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'> <span aria-hidden='true'>&laquo;</span></a></li>" : "<li class='page-item disabled'><a class='page-link'>&laquo;</li></a>";
+					
+					if ($numPags <= 8) {
+					    
+					    for ($i = 1; $i <= $numPags; $i ++) {
+					        
+					        echo "<li class='page-item " . (($pag == $i) ? "active" : "") . "'>" . (($pag != $i) ? "<a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . $i . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . $i . "</a>" : "<a class='page-link'>" . $i . "</a>") . "</li>";
+					    }
+					} else if ($pag >= 5 && $pag <= ($numPags - 4)) {
+					    
+					    for ($i = 1; $i <= 7; $i ++) {
+					        
+					        if ($i == 1) {
+					            echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . 1 . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . 1 . "</a> </li>";
+					        }
+					        if ($i == 2 || $i == 6) {
+					            
+					            echo "<li class=page-item> <a class='page-link'> ... </a></li>";
+					        }
+					        
+					        if ($i == 3) {
+					            echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . ($pag - 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($pag - 1) . "</a> </li>";
+					        }
+					        if ($i == 4) {
+					            echo "<li class='page-item  active'> <a class='page-link'>" . $pag . "</a> </li>";
+					        }
+					        if ($i == 5) {
+					            echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . ($pag + 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($pag + 1) . "</a> </li>";
+					        }
+					        
+					        if ($i == 7) {
+					            echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . ($numPags) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($numPags) . "</a> </li>";
+					        }
+					    }
+					} else if ($pag < 5) {
+					    
+					    for ($i = 1; $i <= 7; $i ++) {
+					        
+					        if ($i != 6 && $i != 7) {
+					            
+					            echo "<li class='page-item " . (($pag == $i) ? "active" : "") . "'>" . (($pag != $i) ? "<a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . $i . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . $i . "</a>" : "<a class='page-link'>" . $i . "</a>") . "</li>";
+					        } else if ($i == 6) {
+					            echo "<li class=page-item> <a class='page-link'> ... </a></li>";
+					        } else if ($i == 7) {
+					            echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . ($numPags) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($numPags) . "</a> </li>";
+					        }
+					    }
+					} else if ($pag > ($numPags - 4)) {
+					    $prov = $numPags - 3;
+					    for ($i = $numPags - 6; $i <= $numPags; $i ++) {
+					        
+					        if ($i > $numPags - 5) {
+					            echo "<li class='page-item " . (($pag == $i) ? "active" : "") . "'>" . (($pag != $i) ? "<a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . $i . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . $i . "</a>" : "<a class='page-link'>" . $i . "</a>") . "</li>";
+					            $prov ++;
+					        } else if ($i == $numPags - 6) {
+					            
+					            echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . 1 . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . 1 . "</a> </li>";
+					        } else if ($i == $numPags - 5) {
+					            
+					            echo "<li class=page-item> <a class='page-link'> ... </a></li>";
+					        }
+					    }
+					}
+					
+					echo ($pag != $numPags) ? "<li class='page-item'><a class='page-link' href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&pag=" . ($pag + 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'> <span aria-hidden='true'>&raquo;</span></a></li>" : "<li class='page-item disabled'><a class='page-link'>&raquo;</li></a>";
+							?>
 					</ul>
 					</nav>
 				</div>
