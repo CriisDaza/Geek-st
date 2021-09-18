@@ -2,7 +2,7 @@
 <?php 
 session_start();
 require_once "logica/Admin.php";
-
+require_once "logica/Cliente.php";
 require_once 'logica/Producto.php';
 require_once 'logica/Marca.php';
 require_once 'logica/TipoProducto.php';
@@ -18,7 +18,9 @@ if( isset ($_GET["pid"])){
 }
 
 $pagSinSesion = array(
-    "presentacion/autenticar.php"
+    "presentacion/autenticar.php",
+    "presentacion/cliente/formularioRegistrar.php",
+    "presentacion/formularioIngresar.php" 
 );
 
 ?>
@@ -28,8 +30,23 @@ $pagSinSesion = array(
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.11.1/css/all.css" />
+    <link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css"
+	rel="stylesheet"/>
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"></script>
+<script 
+	src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js"></script>	
+<script
+	src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+
+<script charset="utf-8">
+$(function () { 
+	$("[data-toggle='tooltip']").tooltip(); 
+});
+</script>
+    
     <title>GeekStore</title>
     <link rel="icon" type="image/png" href="img/logo.png"/>
   </head>
@@ -46,7 +63,7 @@ if ($pid != "" && (in_array($pid, $pagSinSesion) || (isset($_SESSION["id"]) && $
 		<div class="row mt-3">
 			<div class="row">
 				<div class="col text-center text-muted">
-					Criis & Jonatan xd &copy; <?php echo date("Y") ?>	
+				<?php echo	"Criis & Jonatan  &copy" . date("Y") ?>	
 				</div>
 			</div>
 		</div>

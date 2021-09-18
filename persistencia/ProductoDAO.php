@@ -46,7 +46,7 @@ class ProductoDAO
     
     public function Consultar(){
         return "select idproducto, nombre, precio, cantidad, imagen, administrador_idadministrador, marca_idmarca, tipoproducto_idtipoproducto
-                from producto where idproducto= '" . $this ->idproducto . "'"; 
+                from producto where idproducto = '" . $this ->idproducto . "'"; 
     }
     
     public function ConsultarTodos($atributo, $direccion, $filas , $pag){

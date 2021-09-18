@@ -1,5 +1,4 @@
 <?php
-include 'presentacion/menuAdmin.php';
 
 $atributo = "";
 $direccion = "";
@@ -28,7 +27,6 @@ $totalFilas = $producto->ConsultarTotalFilas();
 	<div class="row mt-3">
 		<div class="col">
 			<div class="card">
-				<h5 class="card-header">Productos</h5>
 				<div class="card-body">
 					<div class="row">
 						<div class="col-2">
@@ -41,11 +39,12 @@ $totalFilas = $producto->ConsultarTotalFilas();
 							</select>
 						</div>
 					</div>
-					
-					<table class="table table-dark table-striped mt-3">
+					<div class="table-responsive"> 
+					<table class="table table-dark table-striped mt-3 col-12">
 					<thead >
 					<tr >
-					<th  >#</th>
+					<th > </th>
+					<th >Imagen</th>
 					<th >Nombre
 					<?php 
 								echo ($atributo!="nombre" || $direccion!="asc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&atributo=nombre&direccion=asc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-up-alt'></i></a> ":"<i class=' link-light fas fa-sort-up'></i> ";
@@ -57,31 +56,27 @@ $totalFilas = $producto->ConsultarTotalFilas();
 								echo ($atributo!="precio" || $direccion!="desc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&atributo=precio&direccion=desc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-down-alt'></i></a> ":"<i class=' link-light fas fa-sort-down'></i> ";
 								?>
 					</th >
-								<th >Cantidad</th>
-								<th >Imagen</th>
 								<th >Marca</th>
-								<th >Tipo</th>
-								<th ></th>
 								</tr>
 								</thead>
 								<tbody>
 								<?php 
-								$pos=1;
+								
 								foreach ($productos as $productoActual){
 								    echo "<tr>";
-								    echo "<td>" . $pos ++ . "</td>
+								    echo "
+                                      <td nowrap> <a href='modalProducto.php?id=" . $productoActual->getId() . "' data-bs-toggle='modal' data-bs-target='#modalProducto'><i class=' link-light fas fa-eye'></i></a></td>
+                                      <td>" . (($productoActual -> getImagen()!="")?"<img src='" . $productoActual -> getImagen() . "' height='40px' />":"") . "</td>
                                       <td >" . $productoActual -> getNombre() . "</td>
                                       <td>" . $productoActual -> getPrecio() . "</td>
-                                      <td>" . $productoActual -> getCantidad() . "</td>
-                                      <td>" . (($productoActual -> getImagen()!="")?"<img src='" . $productoActual -> getImagen() . "' height='40px' />":"") . "</td>
                                       <td>" . $productoActual -> getMarca() -> getNombre() . "</td>
-                                      <td>" . $productoActual -> getTipoproducto() -> getNombre() . "</td>
-                                      <td nowrap> <a href='index.php?pid=" . base64_encode("presentacion/producto/editarImagenProducto.php") . "&id=" . $productoActual -> getId() . "' data-bs-toggle='tooltip' data-bs-placement='top' title='Editar imagen'><i class=' link-light far fa-image'></i></a></td>";
+                                     ";
 								    echo "</tr>";
 								}
 								?>
 								</tbody>
 					</table>
+					</div>
 					<nav aria-label="Page navigation example">
 					<ul class="pagination justify-content-center"> 
 					<?php 
@@ -172,6 +167,22 @@ $("#filas").change(function() {
 	<?php } ?>
 	location.replace(url);  	
 });
+</script>
+
+<div class="modal fade" id="modalProducto" tabindex="-1"
+	aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+		</div>
+	</div>
+</div>
+
+<script>
+	$('body').on('show.bs.modal', '.modal', function (e) {	    
+		var link = $(e.relatedTarget);
+		$(this).find(".modal-content").load(link.attr("href"));
+	});
 </script>
 
 
