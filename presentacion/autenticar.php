@@ -8,6 +8,15 @@ if($administrador -> autenticar()){
    // echo "ok";
     header("location: index.php?pid=" . base64_encode("presentacion/sesionAdmin.php"));
 }else{
-    header("Location: index.php?error=1");
+    $error=1;
+    header("Location: index.php?pid=".base64_encode("presentacion/formularioIngresar.php")."&error=".$error);
 }
+?>
 
+<script>
+$("#error").change(function() {
+    var error = $("#error").val();
+    var url = "index.php?pid=<?php echo base64_encode("presentacion/formularioIngresar.php") ?>&error=" + error;
+    location.replace(url);
+});
+    </script>
