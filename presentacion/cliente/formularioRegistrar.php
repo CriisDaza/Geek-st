@@ -3,7 +3,7 @@
 
 if(isset($_POST["crear"])){
    
-    $cliente=new Cliente($_POST["nombre"], $_POST["apellido"], $_POST["correo"], $_POST["clave"], $_POST["direccion"], 1);
+    $cliente=new Cliente("",$_POST["nombre"], $_POST["apellido"], $_POST["correo"], $_POST["clave"], $_POST["direccion"], 1);
     $cliente ->Crear();
     
 }
