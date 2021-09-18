@@ -15,6 +15,7 @@ class ClienteDAO
         $this -> nombre = $nom;
         $this -> apellido = $ape;
         $this -> correo = $mail;
+        $this -> clave = $clav;
         $this -> direccion = $direc;
         $this -> estado = $estado;
     }
@@ -26,7 +27,7 @@ class ClienteDAO
                 '" . $this -> nombre . "',
                 '" . $this -> apellido . "',
                 '" . $this -> correo . "',
-                '" . $this -> clave . "',
+                '" . md5($this -> clave). "',
                 '" . $this -> direccion . "',
                 '" . $this -> estado . "'
                  )";
@@ -35,7 +36,7 @@ class ClienteDAO
 public function Autenticar(){
     return "select idcliente, estado
                 from cliente
-                where correo = '" . $this -> correo . "' and clave = '" . md5($this -> clave) . "'";
+                where correo = '" . $this -> correo . "' and clave = '" .md5($this -> clave). "'";
 }
 
 public function Activar(){
@@ -46,7 +47,7 @@ public function Activar(){
 
 public function Deshabilitar(){
     return "update cliente
-                set estado = '2'
+                set estado = '0'
                 where idcliente = '" . $this -> idcliente . "'";
 }
 

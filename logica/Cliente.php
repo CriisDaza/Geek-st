@@ -13,12 +13,56 @@ class Cliente
     private $conexion;
     private $clienteDAO;
     
-    public function Cliente($id="", $nom="", $ape="", $mail="", $clav="", $direc="", $estado=""){
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    public function getApellido()
+    {
+        return $this->apellido;
+    }
+
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+    public function getClave()
+    {
+        return $this->clave;
+    }
+
+    public function getDireccion()
+    {
+        return $this->direccion;
+    }
+    public function getEstado()
+    {
+        return $this->estado;
+    }
+
+    public function getConexion()
+    {
+        return $this->conexion;
+    }
+    public function getClienteDAO()
+    {
+        return $this->clienteDAO;
+    }
+
+    public function Cliente($id=0, $nom="", $ape="", $mail="", $clav="", $direc="", $estado=""){
         
         $this -> id = $id;
         $this -> nombre = $nom;
         $this -> apellido = $ape;
         $this -> correo = $mail;
+        $this -> clave = $clav;
         $this -> direccion = $direc;
         $this -> estado = $estado;
         $this -> conexion = new Conec();
