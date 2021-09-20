@@ -122,4 +122,13 @@ class Cliente
         $resultado = $this -> conexion -> extraer();
         $this -> estado = $resultado[0];
     }
+    public function Consultar() {
+        $this -> conexion -> Abrir();
+        $this -> conexion -> ejecutar($this -> clienteDAO -> Consultar());
+        $resultado = $this -> conexion -> extraer();
+        $this -> nombre = $resultado[0];
+        $this -> apellido = $resultado[1];
+        $this -> correo = $resultado[2];
+        ;
+    }
 }

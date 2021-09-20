@@ -38,19 +38,27 @@ if (isset($_GET["error"])) {
 						<div class="d-grid">
 							<button type="submit" class="btn btn-primary">Entrar</button>
 						</div>
+						<p><a href="index.php?pid= <?php echo base64_encode("presentacion/cliente/formularioRegistrar.php")?>"> No tienes cuenta?</a></p>
 						<a href="index.php">Regresar</a>
 					</form>
-						<?php
-
-    if ($error == 1) {
-        ?>
+				
+			<?php if(isset ($_GET["error"])) {?>
 						<div class="alert alert-danger alert-dismissible fade show mt-2"
 						role="alert">
+						<?php if($error==1) { 
+						?>
 						Error de correo o clave
+						<?php } else if($error==2)  { ?>
+						Su cuenta ha sido deshabilitada comuniquese con el admin
+						
+						<?php } ?>
 						<button type="button" class="btn-close" data-bs-dismiss="alert"
 							aria-label="Close"></button>
-					</div>
-						<?php } ?>
+					
+					<?php }?>
+						</div>
+						
+	
 					</div>
 			</div>
 		</div>

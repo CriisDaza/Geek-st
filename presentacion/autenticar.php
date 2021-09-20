@@ -4,17 +4,16 @@ $clave = $_POST["clave"];
 $administrador = new Admin( 0, "", "", $correo, $clave,);
 if($administrador -> autenticar()){
     $_SESSION["id"] = $administrador -> getId();
-    echo "ok";
     header("location: index.php?pid=" . base64_encode("presentacion/sesionAdmin.php"));
 }else{
-    echo "no pez";
     $cliente = new Cliente( "", "", "", $correo, $clave);
     if($cliente -> Autenticar()){
         if($cliente -> getEstado() == 1){
             $_SESSION["id"] = $cliente -> getId();
             header("Location: index.php?pid=" . base64_encode("presentacion/sesionCliente.php"));
         }else if($cliente -> getEstado() == 0){
-            header("Location: index.php?pid=".base64_encode("presentacion/formularioIngresar.php")."&error=2");
+            $error=2;
+            header("Location: index.php?pid=".base64_encode("presentacion/formularioIngresar.php")."&error=".$error);
         }
     }else{
         $error=1;
