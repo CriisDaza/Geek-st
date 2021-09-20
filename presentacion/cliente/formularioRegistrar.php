@@ -59,7 +59,10 @@ if(isset($_POST["crear"])){
 						<div class="d-grid">
 							<button type="submit" name="crear" class="btn btn-primary">Registrarme</button>
 						</div>
-						<a href="index.php">Regresar</a>
+						
+					<p>	<a href="index.php?pid= <?php echo base64_encode("presentacion/formularioIngresar.php")?>"> Ya tienes una cuenta?</a></p>
+					<a href="index.php">Regresar</a>
+						
 					</form>				
 
 				</div>

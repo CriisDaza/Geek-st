@@ -29,7 +29,7 @@ $clientes = $cliente -> ConsultarTodos();
                                       <td>" . $clienteActual -> getNombre() . "</td>
                                       <td>" . $clienteActual -> getApellido() . "</td>
                                       <td>" . $clienteActual -> getCorreo() . "</td>
-                                      <td>" . (($clienteActual -> getEstado()==0)?"deshabilitado":(($clienteActual -> getEstado()==1)?"<div id='capaEstado" . $clienteActual -> getId() . "'>Activo</div>":"<div id='capaEstado" . $clienteActual -> getId() . "'>xd</div>")) . "</td>
+                                      <td>" . ((($clienteActual -> getEstado()==1)?"<div id='capaEstado" . $clienteActual -> getId() . "'>Activo</div>":"<div id='capaEstado" . $clienteActual -> getId() . "'>Deshabilitados</div>")) . "</td>
                                       <td nowrap>" . (($clienteActual -> getEstado()==0)?"<a href='#'><i id='capaIcono" . $clienteActual -> getId() . "' class='fas fa-user-times'></i></a>":(($clienteActual -> getEstado()==1)?"<a href='#'><i id='capaIcono" . $clienteActual -> getId() . "' class='fas fa-user-check'></i></a>":"")) . " </td>";
                                 echo "</tr>";
                             }
@@ -45,7 +45,7 @@ $clientes = $cliente -> ConsultarTodos();
 <?php 
 foreach ($clientes as $clienteActual) {
         echo "$('#capaIcono" . $clienteActual -> getId() . "').click(function() {\n";
-        echo "\tvar url = 'index.php?pid=" . base64_encode("presentacion/cliente/cambiarEstadoClienteAjax.php") . "&id=" . $clienteActual -> getId() . "';\n";
+        echo "\tvar url = 'indexAjax.php?pid=" . base64_encode("presentacion/cliente/cambiarEstadoClienteAjax.php") . "&id=" . $clienteActual -> getId() . "';\n";
         echo "\t$('#capaEstado" . $clienteActual -> getId() . "').load(url);\n";
         echo "\tif($('#capaIcono" . $clienteActual -> getId() . "').attr('class') == 'fas fa-user-times'){\n";
         echo "\t\t$('#capaIcono" . $clienteActual -> getId() . "').attr('class', 'fas fa-user-check');\n";

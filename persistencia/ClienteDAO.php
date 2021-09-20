@@ -65,4 +65,10 @@ public function ConsultarEstado(){
                 from cliente
                 where idcliente = " . $this -> idcliente;
 }
+
+public function Consultar(){
+    return "select nombre, apellido, correo
+                from cliente
+                where idcliente = '" . $this -> idcliente . "'";
+}
 }
