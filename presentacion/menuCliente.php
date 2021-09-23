@@ -36,7 +36,7 @@ $cliente -> Consultar();
 				<a class="nav-link navbar-brand link-light"
 					href="index.php?sesion=false">Cerrar Sesion</a>
 				
-			<a href="index.php?pid= <?php echo base64_encode("presentacion/formularioIngresar.php")?>"><i class=' link-light fas fa-cart-plus fa-2x' ></i></a>
+			<a style="color: white" href="index.php?pid= <?php echo base64_encode("tablaCarrito.php")?>"><i class=' link-light fas fa-cart-plus' ></i>(<?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']);?>)</a>
 			</div>
 		<!-- x</div> -->
 		

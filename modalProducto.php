@@ -3,7 +3,7 @@ require_once "logica/Admin.php";
 require_once "logica/Marca.php";
 require_once "logica/TipoProducto.php";
 require_once "logica/Producto.php";
-
+require_once 'carrito.php';
 $id = $_GET["id"];
 $producto = new Producto($id);
 $producto->Consultar();
@@ -26,7 +26,14 @@ $producto->Consultar();
         echo "<tr><td>Tipo</td><td>" . $producto ->getTipoproducto()-> getNombre() . "</td></tr>";
         ?>
 	</table>
+	<div align="right">
+		<form action="" method="post">
+
+<input name="idproducto" value="<?php echo $producto -> getId();?>">
+	<button name="btnAccion" value="Agregar" type="submit"
+		class="btn btn-primary">Agregar al carrito</button>
+</form>
+	</div>
 </div>
- <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button></div>
+<div class="modal-footer">
+</div>

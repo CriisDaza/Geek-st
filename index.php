@@ -6,7 +6,7 @@ require_once "logica/Cliente.php";
 require_once 'logica/Producto.php';
 require_once 'logica/Marca.php';
 require_once 'logica/TipoProducto.php';
-
+require_once 'carrito.php';
 if (isset($_GET["sesion"]) && $_GET["sesion"] == "false") {
     $_SESSION["id"] = "";
     
