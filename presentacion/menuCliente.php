@@ -1,11 +1,29 @@
 <?php
 $cliente = new Cliente($_SESSION["id"]);
 $cliente -> Consultar();
+
+$carrito = new Carrito("","",$_SESSION["id"]);
+$numcar=$carrito ->ConsultarCarro();
+
+
+$_SESSION["carrito"]=$numcar;
+
+
+$carr= new Carrito($numcar,"","");
+if($carr ->CantidadCarrito()!= NULL){
+$_SESSION["car"]=$carr ->CantidadCarrito();
+}else{
+    $_SESSION["car"]=0;
+}
+
+
+
+
 ?>
 
 <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#">GeekStore   <img src="img/logo.png" alt="" width="40" height="40"></a>
+		<a class="navbar-brand" href="index.php?pid= <?php echo base64_encode("presentacion/sesionCliente.php")?>">GeekStore   <img src="img/logo.png" alt="" width="40" height="40"></a>
 		<form class="d-flex">
 				<input class="form-control me-2" type="search" placeholder="Search"
 					aria-label="Search">
@@ -36,7 +54,8 @@ $cliente -> Consultar();
 				<a class="nav-link navbar-brand link-light"
 					href="index.php?sesion=false">Cerrar Sesion</a>
 				
-			<a style="color: white" href="index.php?pid= <?php echo base64_encode("tablaCarrito.php")?>"><i class=' link-light fas fa-cart-plus' ></i>(<?php echo (empty($_SESSION['carrito']))?0:count($_SESSION['carrito']);?>)</a>
+		<a style="color: white" href="index.php?pid= <?php echo base64_encode("presentacion/cliente/carrito.php")?>"><i class=' link-light fas fa-cart-plus fa' ></i>(<?php echo $_SESSION["car"];  ?>)</a> 
+			
 			</div>
 		<!-- x</div> -->
 		

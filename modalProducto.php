@@ -3,7 +3,7 @@ require_once "logica/Admin.php";
 require_once "logica/Marca.php";
 require_once "logica/TipoProducto.php";
 require_once "logica/Producto.php";
-require_once 'carrito.php';
+
 $id = $_GET["id"];
 $producto = new Producto($id);
 $producto->Consultar();
@@ -24,16 +24,37 @@ $producto->Consultar();
         echo "<tr><td>Cantidad</td><td>" . $producto -> getCantidad() . "</td></tr>";
         echo "<tr><td>Marca</td><td>" . $producto -> getMarca()->getNombre() . "</td></tr>";
         echo "<tr><td>Tipo</td><td>" . $producto ->getTipoproducto()-> getNombre() . "</td></tr>";
+        echo "<tr><td>codigo</td><td>" . $id . "</td></tr>";
         ?>
 	</table>
-	<div align="right">
-		<form action="" method="post">
+	<form action="index.php?pid=<?php echo base64_encode("presentacion/sesionCliente.php")."&p=".$id ?>" method="post">
 
-<input name="idproducto" value="<?php echo $producto -> getId();?>">
-	<button name="btnAccion" value="Agregar" type="submit"
-		class="btn btn-primary">Agregar al carrito</button>
-</form>
-	</div>
+	<div class=row>
+	<label class="form-label">Cantidad</label>
+	<div class="mb-3 col-6">
+		<select class="form-select" name="cantidad">
+           <option selected>elegir cantidad</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+
+		</select>
+		</div>
+		<div class="col-6"> <button type="submit" name="agregar" class="btn btn-primary">Añadir al carrito</button></div>
+	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+    
+     </div>
+     </form>
 </div>
-<div class="modal-footer">
-</div>
+ <div class="modal-footer">
+        </div>
+        
+  <script>
+$("#p").change(function() {
+    var p = $("#p").val();
+    var url = "index.php?pid=<?php echo base64_encode("presentacion/sesionCliente.php") ?>&p=" + p;
+    location.replace(url);
+});
+    </script>

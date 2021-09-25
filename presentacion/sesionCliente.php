@@ -1,7 +1,22 @@
 <?php
+
+if(isset($_POST["agregar"])){
+    $pcarrito=new PCarrito($_SESSION["carrito"], $_GET["p"], $_POST["cantidad"]);
+    $pcarrito ->AgregaralCarrito();
+    $_SESSION["car"]=$_SESSION["car"] +$_POST["cantidad"];
+}
+
 include "presentacion/menuCliente.php";
+
 $cliente = new Cliente($_SESSION["id"]);
 $cliente ->Consultar();
+
+
+if(isset($_POST["agregar"])){
+    $pcarrito=new PCarrito($_SESSION["carrito"], $_GET["p"], $_POST["cantidad"]);
+    $pcarrito ->AgregaralCarrito();
+    $_SESSION["car"]=$_SESSION["car"] +$_POST["cantidad"];
+}
 
 ?>
 

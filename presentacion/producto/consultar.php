@@ -70,7 +70,7 @@ $totalFilas = $producto->ConsultarTotalFilas();
 								foreach ($productos as $productoActual){
 								    echo "<tr>";
 								    echo "<td>" . $pos ++ . "</td>
-                                      <td >" . $productoActual -> getNombre() . "</td>
+                                      <td >" . $productoActual ->getNombre() . "</td>
                                       <td>" . $productoActual -> getPrecio() . "</td>
                                       <td>" . $productoActual -> getCantidad() . "</td>
                                       <td>" . (($productoActual -> getImagen()!="")?"<img src='" . $productoActual -> getImagen() . "' height='40px' />":"") . "</td>

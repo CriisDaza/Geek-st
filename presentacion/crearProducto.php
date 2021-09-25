@@ -23,6 +23,7 @@ if(isset($_POST["crear"])){
 					</div>
 					<?php } ?>
 					<form action="index.php?pid=<?php echo base64_encode("presentacion/producto/crearProducto.php") ?>" method="post">
+					
 						<div class="mb-3">
 							<label class="form-label">Nombre</label>
 							<input type="text" class="form-control" name="nombre" required="required">
