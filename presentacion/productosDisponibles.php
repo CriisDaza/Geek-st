@@ -1,4 +1,3 @@
-
 <?php
 
 $atributo = "";
@@ -6,22 +5,22 @@ $direccion = "";
 $filas = 5;
 $pag = 1;
 
-if (isset($_GET["atributo"])) {
-    
-    $atributo = $_GET["atributo"];
-}
-if (isset($_GET["direccion"])) {
-    
-    $direccion = $_GET["direccion"];
-}
-if (isset($_GET["pag"]) && $_GET["pag"] > 0) {
-    
-    $pag = $_GET["pag"];
-}
-if (isset($_GET["filas"])) {
-    
-    $filas = $_GET["filas"];
-}
+    if (isset($_GET["atributo"])) {
+        
+        $atributo = $_GET["atributo"];
+    }
+    if (isset($_GET["direccion"])) {
+        
+        $direccion = $_GET["direccion"];
+    }
+    if (isset($_GET["pag"]) && $_GET["pag"] > 0) {
+        
+        $pag = $_GET["pag"];
+    }
+    if (isset($_GET["filas"])) {
+        
+        $filas = $_GET["filas"];
+    }
 
 $producto = new Producto();
 $productos = $producto->ConsultarTodos($atributo, $direccion, $filas, $pag);
@@ -53,14 +52,14 @@ $totalFilas = $producto->ConsultarTotalFilas();
 									<th>Nombre
 									
                 					<?php
-                                    echo ($atributo != "nombre" || $direccion != "asc") ? "<a href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&atributo=nombre&direccion=asc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-up-alt'></i></a> " : "<i class=' link-light fas fa-sort-up'></i> ";
-                                    echo ($atributo != "nombre" || $direccion != "desc") ? "<a href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&atributo=nombre&direccion=desc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-down-alt'></i></a> " : "<i class='link-light fas fa-sort-down'></i> ";
+                                    echo ($atributo != "nombre" || $direccion != "asc") ? "<a href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&atributo=nombre&direccion=asc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-up-alt'></i></a> " : "<i class=' link-light fas fa-sort-up'></i> ";
+                                    echo ($atributo != "nombre" || $direccion != "desc") ? "<a href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&atributo=nombre&direccion=desc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-down-alt'></i></a> " : "<i class='link-light fas fa-sort-down'></i> ";
                                     ?>	
                                     
 									<th>Precio
 									<?php
-                                    echo ($atributo != "precio" || $direccion != "asc") ? "<a href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&atributo=precio&direccion=asc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-up-alt'></i></a> " : "<i class=' link-light fas fa-sort-up'></i> ";
-                                    echo ($atributo != "precio" || $direccion != "desc") ? "<a href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&atributo=precio&direccion=desc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-down-alt'></i></a> " : "<i class=' link-light fas fa-sort-down'></i> ";
+                                    echo ($atributo != "precio" || $direccion != "asc") ? "<a href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&atributo=precio&direccion=asc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-up-alt'></i></a> " : "<i class=' link-light fas fa-sort-up'></i> ";
+                                    echo ($atributo != "precio" || $direccion != "desc") ? "<a href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&atributo=precio&direccion=desc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-down-alt'></i></a> " : "<i class=' link-light fas fa-sort-down'></i> ";
                                     ?>
                                     
 									</th>
@@ -94,13 +93,13 @@ $totalFilas = $producto->ConsultarTotalFilas();
                         
                         $numPags ++;
                     }
-                    echo ($pag != 1) ? "<li class='page-item'><a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . ($pag - 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'> <span aria-hidden='true'>&laquo;</span></a></li>" : "<li class='page-item disabled'><a class='page-link'>&laquo;</li></a>";
+                    echo ($pag != 1) ? "<li class='page-item'><a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . ($pag - 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'> <span aria-hidden='true'>&laquo;</span></a></li>" : "<li class='page-item disabled'><a class='page-link'>&laquo;</li></a>";
                 
                     if ($numPags <= 8) {
                 
                         for ($i = 1; $i <= $numPags; $i ++) {
                 
-                            echo "<li class='page-item " . (($pag == $i) ? "active" : "") . "'>" . (($pag != $i) ? "<a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . $i . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . $i . "</a>" : "<a class='page-link'>" . $i . "</a>") . "</li>";
+                            echo "<li class='page-item " . (($pag == $i) ? "active" : "") . "'>" . (($pag != $i) ? "<a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . $i . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . $i . "</a>" : "<a class='page-link'>" . $i . "</a>") . "</li>";
                         }
                         
                     } else if ($pag >= 5 && $pag <= ($numPags - 4)) {
@@ -109,7 +108,7 @@ $totalFilas = $producto->ConsultarTotalFilas();
                 
                             if ($i == 1) {
                                 
-                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . 1 . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . 1 . "</a> </li>";
+                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . 1 . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . 1 . "</a> </li>";
                             }
                             if ($i == 2 || $i == 6) {
                 
@@ -118,7 +117,7 @@ $totalFilas = $producto->ConsultarTotalFilas();
                 
                             if ($i == 3) {
                                 
-                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . ($pag - 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($pag - 1) . "</a> </li>";
+                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . ($pag - 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($pag - 1) . "</a> </li>";
                             }
                             if ($i == 4) {
                                 
@@ -126,12 +125,12 @@ $totalFilas = $producto->ConsultarTotalFilas();
                             }
                             if ($i == 5) {
                                 
-                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . ($pag + 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($pag + 1) . "</a> </li>";
+                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . ($pag + 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($pag + 1) . "</a> </li>";
                             }
                 
                             if ($i == 7) {
                                 
-                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . ($numPags) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($numPags) . "</a> </li>";
+                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . ($numPags) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($numPags) . "</a> </li>";
                             }
                         }
                     } else if ($pag < 5) {
@@ -140,13 +139,13 @@ $totalFilas = $producto->ConsultarTotalFilas();
                 
                             if ($i != 6 && $i != 7) {
                 
-                                echo "<li class='page-item " . (($pag == $i) ? "active" : "") . "'>" . (($pag != $i) ? "<a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . $i . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . $i . "</a>" : "<a class='page-link'>" . $i . "</a>") . "</li>";
+                                echo "<li class='page-item " . (($pag == $i) ? "active" : "") . "'>" . (($pag != $i) ? "<a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . $i . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . $i . "</a>" : "<a class='page-link'>" . $i . "</a>") . "</li>";
                             } else if ($i == 6) {
                                 
                                 echo "<li class=page-item> <a class='page-link'> ... </a></li>";
                             } else if ($i == 7) {
                                 
-                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . ($numPags) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($numPags) . "</a> </li>";
+                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . ($numPags) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . ($numPags) . "</a> </li>";
                             }
                         }
                     } else if ($pag > ($numPags - 4)) {
@@ -156,12 +155,12 @@ $totalFilas = $producto->ConsultarTotalFilas();
                 
                             if ($i > $numPags - 5) {
                                 
-                                echo "<li class='page-item " . (($pag == $i) ? "active" : "") . "'>" . (($pag != $i) ? "<a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . $i . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . $i . "</a>" : "<a class='page-link'>" . $i . "</a>") . "</li>";
+                                echo "<li class='page-item " . (($pag == $i) ? "active" : "") . "'>" . (($pag != $i) ? "<a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . $i . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . $i . "</a>" : "<a class='page-link'>" . $i . "</a>") . "</li>";
                                 $prov ++;
                             } else if ($i == $numPags - 6) {
                                 
                 
-                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . 1 . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . 1 . "</a> </li>";
+                                echo "<li class='page-item'> <a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . 1 . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'>" . 1 . "</a> </li>";
                             } else if ($i == $numPags - 5) {
                 
                                 echo "<li class=page-item> <a class='page-link'> ... </a></li>";
@@ -169,7 +168,7 @@ $totalFilas = $producto->ConsultarTotalFilas();
                         }
                     }
                 
-                        echo ($pag != $numPags) ? "<li class='page-item'><a class='page-link' href='index.php?pid=" . base64_encode("presentacion/sesionCliente.php") . "&pag=" . ($pag + 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'> <span aria-hidden='true'>&raquo;</span></a></li>" : "<li class='page-item disabled'><a class='page-link'>&raquo;</li></a>";
+                        echo ($pag != $numPags) ? "<li class='page-item'><a class='page-link' href='index.php?pid=" . base64_encode("presentacion/inicio.php") . "&pag=" . ($pag + 1) . "&filas=" . $filas . (($atributo != "" && $direccion != "") ? ("&atributo=" . $atributo . "&direccion=" . $direccion) : "") . "'> <span aria-hidden='true'>&raquo;</span></a></li>" : "<li class='page-item disabled'><a class='page-link'>&raquo;</li></a>";
                        ?>
 					</ul>
 					</nav>
@@ -183,7 +182,7 @@ $totalFilas = $producto->ConsultarTotalFilas();
 
 $("#filas").change(function() {
 	var filas = $("#filas").val(); 
-	var url = "index.php?pid=<?php echo base64_encode("presentacion/sesionCliente.php") ?>&filas=" + filas;
+	var url = "index.php?pid=<?php echo base64_encode("presentacion/inicio.php") ?>&filas=" + filas;
 	<?php if($atributo!="" && $direccion!="") { ?>
 	url += "&atributo=<?php echo $atributo ?>&direccion=<?php echo $direccion ?>";	
 	<?php } ?>

@@ -19,7 +19,7 @@
 			<div class="col">
 				<div class="card">
 					<div class="card-body">
-					<?php include "presentacion/cliente/productosDisponibles.php" ?> 
+					<?php include "presentacion/productosDisponibles.php" ?> 
 					</div>
 				</div>
 			</div>

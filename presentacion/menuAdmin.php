@@ -19,9 +19,7 @@ $administrador->consultar();
 					href="#" id="navbarDropdownMenuLink" role="button"
 					data-bs-toggle="dropdown" aria-expanded="false"> Producto </a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-						<li><a class="dropdown-item"
-							href="index.php?pid=<?php echo base64_encode("presentacion/producto/crearProducto.php")?>">Crear</a></li>
-						<li><a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/producto/consultar.php")?>">Consultar</a></li>
+						<li><a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/producto/consultarProductos.php")?>">Consultar</a></li>
 						<li><a class="dropdown-item" href="#">Buscar</a></li>
 					</ul></li>
 				<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
@@ -30,6 +28,14 @@ $administrador->consultar();
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
 												<li><a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/cliente/consultarCliente.php")?>">Consultar</a></li>
 						<li><a class="dropdown-item" href="#">Buscar</a></li>
+					</ul></li>
+					
+					<li class="nav-item dropdown"><a class="nav-link dropdown-toggle"
+					href="#" id="navbarDropdownMenuLink" role="button"
+					data-bs-toggle="dropdown" aria-expanded="false"> Proveedor </a>
+					<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+												<li><a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/proveedor/consultarProv.php")?>">Consultar</a></li>
+						<li><a class="dropdown-item" href="index.php?pid=<?php echo base64_encode("presentacion/proveedor/crearProveedor.php")?>">Crear</a></li>
 					</ul></li>
 			</ul>
 

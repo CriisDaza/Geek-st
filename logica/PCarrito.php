@@ -12,13 +12,11 @@ class PCarrito
         
         public function PCarrito($idcarrito="", $id_producto="", $cantidad=""){
             
-            
             $this -> carrito_idcarrito = $idcarrito;
             $this -> producto_idproducto = $id_producto;
             $this -> cantidad = $cantidad;
             $this -> conexion = new Conec();
             $this -> pcarritoDAO = new PCarritoDAO($idcarrito, $id_producto, $cantidad);
-            
         }
         
         public function AgregaralCarrito(){

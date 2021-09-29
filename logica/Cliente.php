@@ -1,6 +1,7 @@
 <?php
 require_once 'persistencia/ClienteDAO.php';
 require_once "persistencia/Conec.php";
+
 class Cliente
 {
     private $id;
@@ -42,18 +43,10 @@ class Cliente
     {
         return $this->direccion;
     }
+    
     public function getEstado()
     {
         return $this->estado;
-    }
-
-    public function getConexion()
-    {
-        return $this->conexion;
-    }
-    public function getClienteDAO()
-    {
-        return $this->clienteDAO;
     }
 
     public function Cliente($id=0, $nom="", $ape="", $mail="", $clav="", $direc="", $estado=""){
@@ -76,53 +69,52 @@ class Cliente
         $this -> conexion -> ejecutar($this -> clienteDAO -> ConsultarUltimoId());
         $resultado = $this -> conexion -> extraer();
         $this -> conexion -> cerrar();
+        
         return $resultado[0];
     }
     
     public function Autenticar(){
+        
         $this -> conexion -> Abrir();
-        echo $this -> clienteDAO -> Autenticar();
         $this -> conexion -> ejecutar($this -> clienteDAO -> Autenticar());
+        
         if($this -> conexion -> numFilas() == 0){
+            
             return false;
         }else{
+            
             $resultado = $this -> conexion -> extraer();
             $this -> id = $resultado[0];
             $this -> estado = $resultado[1];
+            
             return true;
         }
     }
     
     public function Activar(){
+        
         $this -> conexion -> Abrir();
         $this -> conexion -> ejecutar($this -> clienteDAO -> Activar());
         $this -> conexion -> cerrar();
     }
     
     public function Deshabilitar(){
+        
         $this -> conexion -> Abrir();
         $this -> conexion -> ejecutar($this -> clienteDAO -> Deshabilitar());
         $this -> conexion -> cerrar();
     }
     
-    public function consultarTodos(){
-        $this -> conexion -> Abrir();
-        $this -> conexion -> ejecutar($this -> clienteDAO -> ConsultarTodos());
-        $clientes = array();
-        while(($resultado = $this -> conexion -> extraer()) != null){
-            array_push($clientes, new Cliente($resultado[0], $resultado[1], $resultado[2], $resultado[3], "", $resultado[4], $resultado[5]));
-        }
-        $this -> conexion -> cerrar();
-        return $clientes;
-    }
-    
     public function consultarEstado(){
+        
         $this -> conexion -> Abrir();
         $this -> conexion -> ejecutar($this -> clienteDAO -> ConsultarEstado());
         $resultado = $this -> conexion -> extraer();
         $this -> estado = $resultado[0];
     }
+    
     public function Consultar() {
+        
         $this -> conexion -> Abrir();
         $this -> conexion -> ejecutar($this -> clienteDAO -> Consultar());
         $resultado = $this -> conexion -> extraer();
@@ -131,4 +123,6 @@ class Cliente
         $this -> correo = $resultado[2];
         ;
     }
+    
+
 }

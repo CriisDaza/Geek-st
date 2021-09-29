@@ -1,5 +1,5 @@
 <?php
-require_once "logica/Admin.php";
+require_once "logica/Proveedor.php";
 require_once "logica/Marca.php";
 require_once "logica/TipoProducto.php";
 require_once "logica/Producto.php";
@@ -27,7 +27,7 @@ $producto->Consultar();
         echo "<tr><td>codigo</td><td>" . $id . "</td></tr>";
         ?>
 	</table>
-	<form action="index.php?pid=<?php echo base64_encode("presentacion/sesionCliente.php")."&p=".$id ?>" method="post">
+	<form action="index.php?pid=<?php echo base64_encode("presentacion/sesionCliente.php")/*."&p=".$id*/ ?>" method="post">
 
 	<div class=row>
 	<label class="form-label">Cantidad</label>
@@ -42,6 +42,7 @@ $producto->Consultar();
 
 		</select>
 		</div>
+		<input type="hidden" name="idp" value="<?php echo $id?>">
 		<div class="col-6"> <button type="submit" name="agregar" class="btn btn-primary">Añadir al carrito</button></div>
 	<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
     

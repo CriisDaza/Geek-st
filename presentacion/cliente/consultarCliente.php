@@ -1,8 +1,10 @@
 <?php
 include "presentacion/menuAdmin.php";
-$cliente = new Cliente();
-$clientes = $cliente -> ConsultarTodos();
+
+$admin = new Admin();
+$clientes = $admin -> ConsultarClientes();
 ?>
+
 <div class="container">
 	<div class="row mt-3">
 		<div class="col">
@@ -23,7 +25,9 @@ $clientes = $cliente -> ConsultarTodos();
 						<tbody>
 							<?php
                             $pos = 1;
+                            
                             foreach ($clientes as $clienteActual) {
+                                
                                 echo "<tr>";
                                 echo "<td>" . $pos ++ . "</td>
                                       <td>" . $clienteActual -> getNombre() . "</td>
@@ -43,17 +47,18 @@ $clientes = $cliente -> ConsultarTodos();
 </div>
 <script>
 <?php 
-foreach ($clientes as $clienteActual) {
-        echo "$('#capaIcono" . $clienteActual -> getId() . "').click(function() {\n";
-        echo "\tvar url = 'indexAjax.php?pid=" . base64_encode("presentacion/cliente/cambiarEstadoClienteAjax.php") . "&id=" . $clienteActual -> getId() . "';\n";
-        echo "\t$('#capaEstado" . $clienteActual -> getId() . "').load(url);\n";
-        echo "\tif($('#capaIcono" . $clienteActual -> getId() . "').attr('class') == 'fas fa-user-times'){\n";
-        echo "\t\t$('#capaIcono" . $clienteActual -> getId() . "').attr('class', 'fas fa-user-check');\n";
-        echo "\t}else{\n";
-        echo "\t\t$('#capaIcono" . $clienteActual -> getId() . "').attr('class', 'fas fa-user-times');\n";
-        echo "\t}\n";
-        echo "});\n";        
-    
-}
+    foreach ($clientes as $clienteActual) {
+        
+            echo "$('#capaIcono" . $clienteActual -> getId() . "').click(function() {\n";
+            echo "\tvar url = 'indexAjax.php?pid=" . base64_encode("presentacion/cliente/cambiarEstadoClienteAjax.php") . "&id=" . $clienteActual -> getId() . "';\n";
+            echo "\t$('#capaEstado" . $clienteActual -> getId() . "').load(url);\n";
+            echo "\tif($('#capaIcono" . $clienteActual -> getId() . "').attr('class') == 'fas fa-user-times'){\n";
+            echo "\t\t$('#capaIcono" . $clienteActual -> getId() . "').attr('class', 'fas fa-user-check');\n";
+            echo "\t}else{\n";
+            echo "\t\t$('#capaIcono" . $clienteActual -> getId() . "').attr('class', 'fas fa-user-times');\n";
+            echo "\t}\n";
+            echo "});\n";        
+        
+    }
 ?>
 </script>

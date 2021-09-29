@@ -1,6 +1,7 @@
 <?php
 require_once 'persistencia/MarcaDAO.php';
 require_once 'persistencia/Conec.php';
+
 class Marca
 {
     private $idmarca; 
@@ -29,6 +30,7 @@ class Marca
     }
 
     public function Marca($idmarca="",$nombre=""){
+        
         $this -> idmarca = $idmarca;
         $this -> nombre = $nombre;
         $this -> conexion = new Conec();
@@ -36,6 +38,7 @@ class Marca
     }
     
     public function Consultar(){
+        
         $this -> conexion -> Abrir();
         $this -> conexion -> ejecutar($this -> marcaDAO -> Consultar());
         $resultado = $this -> conexion -> extraer();
@@ -44,14 +47,18 @@ class Marca
     }
     
     public function ConsultarTodos(){
+        
         $this -> conexion -> Abrir();
         $this -> conexion -> ejecutar($this -> marcaDAO -> ConsultarTodos());
         $marcas = array();
         
         while(($resultado = $this -> conexion -> extraer()) != null){
+            
             array_push($marcas, new Marca($resultado[0], $resultado[1]));
         }
+        
         $this -> conexion -> cerrar();
+        
         return $marcas;
     }
     

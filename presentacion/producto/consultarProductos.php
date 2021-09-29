@@ -7,21 +7,26 @@ $filas = 5;
 $pag = 1;
 
 if (isset($_GET["atributo"])) {
+    
     $atributo = $_GET["atributo"];
 }
 if (isset($_GET["direccion"])) {
+    
     $direccion = $_GET["direccion"];
 }
 if (isset($_GET["pag"]) && $_GET["pag"] > 0) {
+    
     $pag = $_GET["pag"];
 }
 if (isset($_GET["filas"])) {
+    
     $filas = $_GET["filas"];
 }
 
 $producto = new Producto();
 $productos = $producto->ConsultarTodos($atributo, $direccion, $filas, $pag);
 $totalFilas = $producto->ConsultarTotalFilas();
+
 ?>
 
 <div class="container">
@@ -48,13 +53,13 @@ $totalFilas = $producto->ConsultarTotalFilas();
 					<th  >#</th>
 					<th >Nombre
 					<?php 
-								echo ($atributo!="nombre" || $direccion!="asc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&atributo=nombre&direccion=asc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-up-alt'></i></a> ":"<i class=' link-light fas fa-sort-up'></i> ";
-								echo ($atributo!="nombre" || $direccion!="desc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&atributo=nombre&direccion=desc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-down-alt'></i></a> ":"<i class='link-light fas fa-sort-down'></i> ";
+								echo ($atributo!="nombre" || $direccion!="asc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&atributo=nombre&direccion=asc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-up-alt'></i></a> ":"<i class=' link-light fas fa-sort-up'></i> ";
+								echo ($atributo!="nombre" || $direccion!="desc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&atributo=nombre&direccion=desc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-down-alt'></i></a> ":"<i class='link-light fas fa-sort-down'></i> ";
 								?>	
 					<th >Precio
 					<?php 
-								echo ($atributo!="precio" || $direccion!="asc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&atributo=precio&direccion=asc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-up-alt'></i></a> ":"<i class=' link-light fas fa-sort-up'></i> ";
-								echo ($atributo!="precio" || $direccion!="desc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultar.php") . "&atributo=precio&direccion=desc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-down-alt'></i></a> ":"<i class=' link-light fas fa-sort-down'></i> ";
+								echo ($atributo!="precio" || $direccion!="asc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&atributo=precio&direccion=asc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-up-alt'></i></a> ":"<i class=' link-light fas fa-sort-up'></i> ";
+								echo ($atributo!="precio" || $direccion!="desc")?"<a href='index.php?pid=" . base64_encode("presentacion/producto/consultarProductos.php") . "&atributo=precio&direccion=desc&filas=" . $filas . "'><i class=' link-light fas fa-sort-amount-down-alt'></i></a> ":"<i class=' link-light fas fa-sort-down'></i> ";
 								?>
 					</th >
 								<th >Cantidad</th>
@@ -164,12 +169,14 @@ $totalFilas = $producto->ConsultarTotalFilas();
 </div>
 
 <script>
+
 $("#filas").change(function() {
 	var filas = $("#filas").val(); 
-	var url = "index.php?pid=<?php echo base64_encode("presentacion/producto/consultar.php") ?>&filas=" + filas;
+	var url = "index.php?pid=<?php echo base64_encode("presentacion/producto/consultarProductos.php") ?>&filas=" + filas;
 	<?php if($atributo!="" && $direccion!="") { ?>
 	url += "&atributo=<?php echo $atributo ?>&direccion=<?php echo $direccion ?>";	
 	<?php } ?>
+	
 	location.replace(url);  	
 });
 </script>

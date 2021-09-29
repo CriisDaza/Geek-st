@@ -58,6 +58,7 @@ class Admin{
         $this -> conexion -> ejecutar($this -> administradorDAO -> Autenticar());
         
         if($this -> conexion -> numfilas()==0){
+            
             return FALSE;
         }else{
             
@@ -68,6 +69,7 @@ class Admin{
     }
     
     public function consultar(){
+        
         $this -> conexion -> Abrir();
         $this -> conexion -> ejecutar($this -> administradorDAO -> consultar());
         $resultado = $this -> conexion -> extraer();
@@ -76,5 +78,34 @@ class Admin{
         $this -> correo = $resultado[2];
     }
     
+    public function ConsultarProveedores(){
+        
+        $this -> conexion -> Abrir();
+        $this -> conexion -> ejecutar($this -> administradorDAO -> ConsultarProveedores());
+        $proveedores = array();
+        
+        while(($resultado = $this -> conexion -> extraer()) != null){
+            array_push($proveedores, new Proveedor($resultado[0], $resultado[1], $resultado[2], $resultado[3], "", $resultado[4], $resultado[5]));
+        }
+        
+        $this -> conexion -> cerrar();
+        
+        return $proveedores;
+     }
+     
+     public function ConsultarClientes(){
+         
+         $this -> conexion -> Abrir();
+         $this -> conexion -> ejecutar($this -> administradorDAO -> ConsultarClientes());
+         $clientes = array();
+         
+         while(($resultado = $this -> conexion -> extraer()) != null){
+             array_push($clientes, new Cliente($resultado[0], $resultado[1], $resultado[2], $resultado[3], "", $resultado[4], $resultado[5]));
+         }
+         
+         $this -> conexion -> cerrar();
+         
+         return $clientes;
+     }
 }
 

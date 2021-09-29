@@ -1,5 +1,5 @@
 <?php
-include 'presentacion/menuAdmin.php';
+include 'presentacion/menuProv.php';
 
 if (isset($_POST["crear"])) {
     $producto = new Producto("", $_POST["nombre"], $_POST["precio"], $_POST["cantidad"], "", $_SESSION["id"], $_POST["marca"], $_POST["tipoProducto"]);
@@ -46,12 +46,14 @@ if (isset($_POST["crear"])) {
 							<label class="form-label"> Marca</label> <select
 								class="form-select" name="marca"> 
 						<?php
-    $marca = new Marca();
-    $marcas = $marca->ConsultarTodos();
-    foreach ($marcas as $marcaActual) {
-        echo "<option value='" . $marcaActual->getIdmarca() . "'>" . $marcaActual->getNombre() . "</option>";
-    }
-    ?>
+                            $marca = new Marca();
+                            $marcas = $marca->ConsultarTodos();
+                            
+                            foreach ($marcas as $marcaActual) {
+                                
+                                echo "<option value='" . $marcaActual->getIdmarca() . "'>" . $marcaActual->getNombre() . "</option>";
+                            }
+                            ?>
 						</select>
 						</div>
 						<div class="mb-3">
@@ -60,14 +62,16 @@ if (isset($_POST["crear"])) {
 						
 						
 						<?php
-    $tipo = new TipoProducto();
-    $tipos = $tipo->ConsultarTodos();
-    foreach ($tipos as $tipoActual) {
-
-        echo "<option value='" . $tipoActual->getIdtipoproducto() . "'>" . $tipoActual->getNombre() . "</option>";
-    }
-
-    ?>
+						
+                        $tipo = new TipoProducto();
+                        $tipos = $tipo->ConsultarTodos();
+                        
+                        foreach ($tipos as $tipoActual) {
+                    
+                            echo "<option value='" . $tipoActual->getIdtipoproducto() . "'>" . $tipoActual->getNombre() . "</option>";
+                        }
+                    
+                        ?>
 						</select>
 						</div>
 						<div class="d-grid">

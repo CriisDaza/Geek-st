@@ -8,6 +8,10 @@ require_once 'logica/Marca.php';
 require_once 'logica/TipoProducto.php';
 require_once 'logica/PCarrito.php';
 require_once 'logica/Carrito.php';
+require_once 'logica/Factura.php';
+require_once 'logica/PFactura.php';
+require_once 'logica/Proveedor.php';
+
 
 if (isset($_GET["sesion"]) && $_GET["sesion"] == "false") {
     $_SESSION["id"] = "";
@@ -20,6 +24,7 @@ if( isset ($_GET["pid"])){
 }
 
 $pagSinSesion = array(
+    
     "presentacion/autenticar.php",
     "presentacion/cliente/formularioRegistrar.php",
     "presentacion/formularioIngresar.php" 

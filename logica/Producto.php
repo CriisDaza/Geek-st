@@ -9,7 +9,7 @@ class Producto
         private $precio;
         private $cantidad;
         private $imagen;
-        private $admin;
+        private $prov;
         private $marca;
         private $tipoproducto;
         private $conexion;
@@ -40,9 +40,9 @@ class Producto
             return $this->imagen;
         }
     
-        public function getAdmin()
+        public function getProv()
         {
-            return $this->admin;
+            return $this->prov;
         }
     
         public function getMarca()
@@ -55,23 +55,22 @@ class Producto
             return $this->tipoproducto;
         }
     
-        
-        public function Producto($id = "", $nombre = "", $precio = "", $cantidad = "", $imagen = "", $administrador = "", $marca = "", $tipoProducto = "")
-        {
+        public function Producto($id = "", $nombre = "", $precio = "", $cantidad = "", $imagen = "", $provee = "", $marca = "", $tipoProducto = ""){
+    
             $this -> id= $id;
             $this -> nombre = $nombre;
             $this -> precio = $precio;
             $this -> cantidad = $cantidad;
             $this -> imagen = $imagen;
-            $this -> admin = $administrador;
+            $this -> prov = $provee;
             $this -> marca = $marca;
             $this -> tipoproducto = $tipoProducto;
             $this -> conexion = new Conec();
-            $this -> productoDAO = new ProductoDAO($id, $nombre, $precio, $cantidad, $imagen, $administrador, $marca, $tipoProducto );
+            $this -> productoDAO = new ProductoDAO($id, $nombre, $precio, $cantidad, $imagen, $provee, $marca, $tipoProducto );
         }
         
-        public function Crear()
-        {
+        public function Crear()  {
+            
            $this -> conexion -> Abrir();
            $this -> conexion -> ejecutar($this -> productoDAO -> Crear());
            $this -> conexion -> cerrar();
@@ -82,42 +81,56 @@ class Producto
             $this -> conexion -> Abrir();
             $this -> conexion -> ejecutar($this -> productoDAO -> Consultar());
             $resultado = $this -> conexion -> extraer();
-            $administrador = new Admin($resultado[5]);
-            $administrador -> Consultar();
+            
+            $proveedor = new Proveedor($resultado[5]);
+            $proveedor -> Consultar();
+            
             $marca = new Marca($resultado[6]);
             $marca -> Consultar();
+            
             $tipoproducto = new TipoProducto($resultado[7]);
             $tipoproducto -> Consultar();
+            
             $this -> nombre = $resultado[1];
             $this -> precio = $resultado[2];
             $this -> cantidad = $resultado[3];
             $this -> imagen = $resultado[4];
-            $this -> admin = $administrador;
+            $this -> prov = $proveedor;
             $this -> marca = $marca;
             $this -> tipoproducto = $tipoproducto;
         }
         
         
         public function ConsultarTodos($atributo, $direccion, $filas , $pag){
+            
             $this -> conexion -> Abrir();
             $this -> conexion -> ejecutar($this -> productoDAO -> ConsultarTodos($atributo, $direccion, $filas, $pag));
             $productos = array();
+            
             while(($resultado = $this -> conexion -> extraer()) != null){
-                $administrador = new Admin($resultado[5]);
-                $administrador -> Consultar();
+                
+                $proveedor = new Proveedor($resultado[5]);
+                $proveedor -> Consultar();
+                
                 $marca = new Marca($resultado[6]);
                 $marca -> Consultar();
+                
                 $tipoproducto = new TipoProducto($resultado[7]);
                 $tipoproducto -> Consultar();
-                array_push($productos, new Producto($resultado[0], $resultado[1], $resultado[2], $resultado[3], $resultado[4], $administrador, $marca, $tipoproducto));
+                
+                array_push($productos, new Producto($resultado[0], $resultado[1], $resultado[2], $resultado[3], $resultado[4], $proveedor, $marca, $tipoproducto));
             }
+            
             $this -> conexion -> cerrar();
+            
             return $productos;
         }
         
         public function ConsultarTotalFilas(){
+            
             $this -> conexion -> Abrir();
             $this -> conexion -> ejecutar($this -> productoDAO -> ConsultarTotalFilas());
+            
             return $this -> conexion -> extraer()[0];
         }
         
@@ -126,24 +139,39 @@ class Producto
             $this -> conexion -> Abrir();
             $this -> conexion -> ejecutar($this -> productoDAO -> ConsultarFiltro($filtro));
             $productos = array();
+            
             while(($resultado = $this -> conexion -> extraer()) != null){
-                $administrador = new Admin($resultado[5]);
-                $administrador -> Consultar();
+                
+                $proveedor = new Proveedor($resultado[5]);
+                $proveedor -> Consultar();
+                
                 $marca = new Marca($resultado[6]);
                 $marca -> Consultar();
+                
                 $tipoproducto = new TipoProducto($resultado[7]);
                 $tipoproducto -> Consultar();
-                array_push($productos, new Producto($resultado[0], $resultado[1], $resultado[2], $resultado[3], $resultado[4], $administrador, $marca, $tipoproducto));
+                
+                array_push($productos, new Producto($resultado[0], $resultado[1], $resultado[2], $resultado[3], $resultado[4], $proveedor, $marca, $tipoproducto));
             }
             
             $this -> conexion -> cerrar();
+            
             return $productos;
         }
         
         public function EditarImagen(){
+            
             $this -> conexion -> Abrir();
             $this -> conexion -> ejecutar($this -> productoDAO -> EditarImagen());
             $this -> conexion -> cerrar();
+        }
+        
+        public function Agregar() {
+            
+            $this -> conexion -> Abrir();
+            $this -> conexion -> ejecutar($this -> productoDAO -> Agregar());
+            $this -> conexion -> cerrar();
+            
         }
     }
     

@@ -44,9 +44,12 @@ class TipoProducto
         $tiposProducto = array();
         
         while (($resultado = $this->conexion->extraer()) != null) {
+            
             array_push($tiposProducto, new TipoProducto($resultado[0], $resultado[1]));
         }
+        
         $this->conexion->cerrar();
+        
         return $tiposProducto;
     }
 }

@@ -14,9 +14,9 @@ class CarritoDAO
     }
     
     public function Crear(){
+        
         return "insert into carrito (estado, cliente_idcliente)
-                values (
-                '" . $this -> estado . "',
+                values ( 1,
                 '" . $this -> cliente_idcliente . "'
                  )";
     }
@@ -29,6 +29,7 @@ class CarritoDAO
     }
    
     public function ConsultarCarro(){
+        
         return "select idcarrito 
                 from carrito
                 where estado = 1  and  cliente_idcliente = '" . $this -> cliente_idcliente . "'";
@@ -41,12 +42,21 @@ class CarritoDAO
     }
     
     public function ConsultarUltimoId(){
+        
         return "select last_insert_id()";
     }
     
     public function CantidadCarrito(){
+        
         return "select sum(cantidad) from pcarrito where carrito_idcarrito = '" . $this -> idcarrito . "'";
     }
     
+    public function ConsultarPrecio(){
+        
+       return  "select  sum(p.precio*c.cantidad) 
+                from pcarrito as c,producto as p where 
+                (p.idproducto=c.producto_idproducto) 
+                and c.carrito_idcarrito = '".$this ->idcarrito."'";
+    }
 }
 
